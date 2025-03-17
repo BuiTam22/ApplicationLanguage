@@ -1,0 +1,34 @@
+# Thư mục Visual Studio
+.vs/
+
+# Thư mục Build Output
+bin/
+obj/
+
+# File dự án tự sinh
+*.user
+*.suo
+*.cache
+*.csproj.user
+*.sln.docstates
+
+# File Debug
+*.pdb
+*.ilk
+*.exp
+*.idb
+*.tlog
+*.log
+
+# File khóa
+*.lock
+project.lock.json
+
+# Các file tự động sinh của Windows
+Thumbs.db
+Desktop.ini
+
+# Tệp tạm thời của ứng dụng
+*.tmp
+*.bak
+*.swp
