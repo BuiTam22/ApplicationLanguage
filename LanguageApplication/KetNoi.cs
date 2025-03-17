@@ -12,7 +12,7 @@ namespace LanguageApplication
         public static OracleConnection connectDB()
         {
             // Data source là Ip của máy
-            string connString = "User Id=QLTV; Password=1234; Data Source= 192.168.56.1";
+            string connString = "User Id=tam22032004; Password=tam22032004; Data Source= 192.168.56.1";
             OracleConnection conn = new OracleConnection(connString);
 
             return conn;

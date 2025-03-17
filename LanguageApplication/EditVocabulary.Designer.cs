@@ -86,18 +86,18 @@
             label5.AutoSize = true;
             label5.Location = new Point(161, 222);
             label5.Name = "label5";
-            label5.Size = new Size(59, 20);
+            label5.Size = new Size(45, 20);
             label5.TabIndex = 4;
-            label5.Text = "IDTopic";
+            label5.Text = "Topic";
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Location = new Point(161, 273);
             label6.Name = "label6";
-            label6.Size = new Size(91, 20);
+            label6.Size = new Size(76, 20);
             label6.TabIndex = 5;
-            label6.Text = "IDWordType";
+            label6.Text = "WordType";
             // 
             // txtid
             // 
