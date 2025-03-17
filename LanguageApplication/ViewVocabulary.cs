@@ -27,7 +27,7 @@ namespace LanguageApplication
         }
         public ViewVocabulary(string idTopic)
         {
-           
+
             this.idTopic = idTopic;
             InitializeComponent();
         }
@@ -36,7 +36,7 @@ namespace LanguageApplication
             conn = KetNoi.connectDB();
             LoadVocabulary();
         }
-        private void LoadVocabulary()
+        private void LoadVocabulary(string keyword="")
         {
             try
             {
@@ -49,9 +49,19 @@ namespace LanguageApplication
                 "JOIN WordType w ON v.idWordType = w.id " +
                  "WHERE v.IDTOPIC = :idTopic";
 
+                if (!string.IsNullOrWhiteSpace(keyword))
+                {
+                    sql += " AND (LOWER(v.englishWord) LIKE LOWER(:keyword) " +
+                           "OR LOWER(v.vietnamWord) LIKE LOWER(:keyword) " +
+                           "OR LOWER(t.nameTopic) LIKE LOWER(:keyword))";
+                }
                 OracleDataAdapter da = new OracleDataAdapter(sql, conn);
                 da.SelectCommand.Parameters.Add(new OracleParameter("idTopic", idTopic));
 
+                if (!string.IsNullOrWhiteSpace(keyword))
+                {
+                    da.SelectCommand.Parameters.Add(":keyword", "%" + keyword + "%");
+                }
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                 dt.Columns.Add("STT", typeof(int));
@@ -111,7 +121,7 @@ namespace LanguageApplication
                 string transcription = row.Cells["transcription"].Value.ToString();
                 string idTopic = row.Cells["idTopic"].Value.ToString();
                 string idWordType = row.Cells["idWordType"].Value.ToString();
-                EditVocabulary edit = new EditVocabulary( id, englishWord, vietnamWord, transcription, idTopic, idWordType);
+                EditVocabulary edit = new EditVocabulary(id, englishWord, vietnamWord, transcription, idTopic, idWordType);
                 if (edit.ShowDialog() == DialogResult.OK)
                 {
                     LoadVocabulary();
@@ -119,5 +129,14 @@ namespace LanguageApplication
             }
         }
 
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            LoadVocabulary(txtSearch.Text);
+        }
     }
 }
