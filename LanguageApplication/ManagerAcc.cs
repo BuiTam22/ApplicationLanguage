@@ -20,7 +20,7 @@ namespace LanguageApplication
         {
             InitializeComponent();
         }
-        private void LoadAccounts()
+        public void LoadAccounts()
         {
             try
             {
@@ -62,6 +62,8 @@ namespace LanguageApplication
            
         }
 
+  
+
         private void dgvManagerAcc_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -75,7 +77,9 @@ namespace LanguageApplication
                 string name = row.Cells["NAME"].Value != DBNull.Value ? row.Cells["NAME"].Value.ToString() : "";
                 string email = row.Cells["EMAIL"].Value != DBNull.Value ? row.Cells["EMAIL"].Value.ToString() : "";
                 string role = row.Cells["ROLE"].Value.ToString();
-                EditUser editForm = new EditUser(id, username, password, name, email, role);
+
+                // Hiển thị form EditUser với dữ liệu
+                EditUser editForm = new EditUser(id, username, password, name, email, role, this);
                 editForm.ShowDialog();
             }
         }
