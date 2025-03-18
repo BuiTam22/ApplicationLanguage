@@ -31,13 +31,13 @@ namespace LanguageApplication
 
         private void btnPracticeVocabulary_Click(object sender, EventArgs e)
         {
-            PracticeVocabulary practiceVocabulary = new PracticeVocabulary();
+            PracticeVocabulary practiceVocabulary = new PracticeVocabulary(idTopic);
             practiceVocabulary.Show();
         }
 
         private void btnPracticePronunciation_Click(object sender, EventArgs e)
         {
-            PracticePronunciation practicePronunciation = new PracticePronunciation();  
+            PracticePronunciation practicePronunciation = new PracticePronunciation(idTopic);  
             practicePronunciation.Show();
         }
     }
