@@ -2,11 +2,12 @@
 {
     public partial class frmTrangChu : Form
     {
-        
+
         public frmTrangChu()
         {
             InitializeComponent();
             lbusername.Text = "Login";
+            EnableAccountManagement(false);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -54,11 +55,21 @@
 
         private void lbusername_Click(object sender, EventArgs e)
         {
-           
+
         }
         public void UpdateUserName(string username)
         {
             lbusername.Text = username;
+        }
+        public void EnableAccountManagement(bool isVisible)
+        {
+            smQuanLyTaiKhoan.Visible = isVisible;
+        }
+
+        private void smQuanLyTaiKhoan_Click(object sender, EventArgs e)
+        {
+            ManagerAcc manager=new ManagerAcc();
+            manager.Show();
         }
     }
 }
