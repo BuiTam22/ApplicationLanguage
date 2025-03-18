@@ -8,7 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Oracle.ManagedDataAccess.Client;
 
 namespace LanguageApplication
 {
@@ -51,19 +50,30 @@ namespace LanguageApplication
                     return;
                 }
 
-                sql = "SELECT COUNT(*) FROM AppUser WHERE UserName = :username AND PassWord = :password";
+                sql = "SELECT ROLE FROM AppUser WHERE UserName = :username AND PassWord = :password";
                 cmd = new OracleCommand(sql, conn);
                 cmd.Parameters.Add(new OracleParameter("username", username));
                 cmd.Parameters.Add(new OracleParameter("password", password));
 
-                int userCount = Convert.ToInt32(cmd.ExecuteScalar());
+                object roleObj = cmd.ExecuteScalar();
 
-                if (userCount > 0)
+                if (roleObj != null)
                 {
+                    string role = roleObj.ToString().Trim().ToLower();
                     MessageBox.Show("Đăng nhập thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    currentUser = txtUserName.Text;
+
+                    currentUser = username;
                     mainForm.setMntFeatureEnableTrue();
                     mainForm.UpdateUserName(username);
+                    if (role == "admin")
+                    {
+                        mainForm.EnableAccountManagement(true); 
+                    }
+                    else
+                    {
+                        mainForm.EnableAccountManagement(false);
+                    }
+
                     this.Close();
                 }
                 else
@@ -80,8 +90,6 @@ namespace LanguageApplication
                 if (conn.State == ConnectionState.Open)
                     conn.Close();
             }
-            //mainForm.setMntFeatureEnableTrue();
-            //this.Close();  // Đóng form Login
         }
 
         private void btnSignUp_Click(object sender, EventArgs e)

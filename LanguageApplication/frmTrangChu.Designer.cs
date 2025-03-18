@@ -36,6 +36,7 @@
             mntFeature = new ToolStripMenuItem();
             mntTopicStudied = new ToolStripMenuItem();
             thêmToolStripMenuItem = new ToolStripMenuItem();
+            smQuanLyTaiKhoan = new ToolStripMenuItem();
             label1 = new Label();
             label2 = new Label();
             lbusername = new Label();
@@ -98,9 +99,17 @@
             // 
             // thêmToolStripMenuItem
             // 
+            thêmToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { smQuanLyTaiKhoan });
             thêmToolStripMenuItem.Name = "thêmToolStripMenuItem";
             thêmToolStripMenuItem.Size = new Size(60, 24);
             thêmToolStripMenuItem.Text = "Thêm";
+            // 
+            // smQuanLyTaiKhoan
+            // 
+            smQuanLyTaiKhoan.Name = "smQuanLyTaiKhoan";
+            smQuanLyTaiKhoan.Size = new Size(224, 26);
+            smQuanLyTaiKhoan.Text = "Quản Lý Tài Khoản";
+            smQuanLyTaiKhoan.Click += smQuanLyTaiKhoan_Click;
             // 
             // label1
             // 
@@ -171,5 +180,6 @@
         private Label label1;
         private Label label2;
         private Label lbusername;
+        private ToolStripMenuItem smQuanLyTaiKhoan;
     }
 }
